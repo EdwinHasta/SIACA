@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCursoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCursoLabel_aula}" for="aula" />
+                    <h:inputText id="aula" value="#{cursoController.selected.aula}" title="#{bundle.EditCursoTitle_aula}" />
+                    <h:outputLabel value="#{bundle.EditCursoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{cursoController.selected.nombre}" title="#{bundle.EditCursoTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.EditCursoLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{cursoController.selected.numero}" title="#{bundle.EditCursoTitle_numero}" />
+                    <h:outputLabel value="#{bundle.EditCursoLabel_profesor}" for="profesor" />
+                    <h:inputText id="profesor" value="#{cursoController.selected.profesor}" title="#{bundle.EditCursoTitle_profesor}" />
+                    <h:outputLabel value="#{bundle.EditCursoLabel_programaacademico}" for="programaacademico" />
+                    <h:inputText id="programaacademico" value="#{cursoController.selected.programaacademico}" title="#{bundle.EditCursoTitle_programaacademico}" />
+                    <h:outputLabel value="#{bundle.EditCursoLabel_tiempo}" for="tiempo" />
+                    <h:inputText id="tiempo" value="#{cursoController.selected.tiempo}" title="#{bundle.EditCursoTitle_tiempo}" />
+                    <h:outputLabel value="#{bundle.EditCursoLabel_cursoid}" for="cursoid" />
+                    <h:inputText id="cursoid" value="#{cursoController.selected.cursoid}" title="#{bundle.EditCursoTitle_cursoid}" required="true" requiredMessage="#{bundle.EditCursoRequiredMessage_cursoid}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{cursoController.update}" value="#{bundle.EditCursoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCursoViewLink}"/>
+                <br />
+                <h:commandLink action="#{cursoController.prepareList}" value="#{bundle.EditCursoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCursoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

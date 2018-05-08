@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewVisitanteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewVisitanteLabel_finnombramiento}"/>
+                    <h:outputText value="#{visitanteController.selected.finnombramiento}" title="#{bundle.ViewVisitanteTitle_finnombramiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewVisitanteLabel_inicionombramiento}"/>
+                    <h:outputText value="#{visitanteController.selected.inicionombramiento}" title="#{bundle.ViewVisitanteTitle_inicionombramiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewVisitanteLabel_visitanteid}"/>
+                    <h:outputText value="#{visitanteController.selected.visitanteid}" title="#{bundle.ViewVisitanteTitle_visitanteid}"/>
+                    <h:outputText value="#{bundle.ViewVisitanteLabel_profesor}"/>
+                    <h:outputText value="#{visitanteController.selected.profesor}" title="#{bundle.ViewVisitanteTitle_profesor}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{visitanteController.destroyAndView}" value="#{bundle.ViewVisitanteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewVisitanteEditLink}"/>
+                <br />
+                <h:commandLink action="#{visitanteController.prepareCreate}" value="#{bundle.ViewVisitanteCreateLink}" />
+                <br />
+                <h:commandLink action="#{visitanteController.prepareList}" value="#{bundle.ViewVisitanteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewVisitanteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

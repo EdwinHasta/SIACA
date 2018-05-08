@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTiempoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTiempoEmpty}" rendered="#{tiempoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tiempoController.items.rowCount > 0}">
+                    <h:outputText value="#{tiempoController.pagination.pageFirstItem + 1}..#{tiempoController.pagination.pageLastItem + 1}/#{tiempoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tiempoController.previous}" value="#{bundle.Previous} #{tiempoController.pagination.pageSize}" rendered="#{tiempoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tiempoController.next}" value="#{bundle.Next} #{tiempoController.pagination.pageSize}" rendered="#{tiempoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tiempoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiempoTitle_dia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiempoTitle_hora}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hora}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiempoTitle_tiempoid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tiempoid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiempoTitle_numero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numero}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tiempoController.prepareView}" value="#{bundle.ListTiempoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tiempoController.prepareEdit}" value="#{bundle.ListTiempoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tiempoController.destroy}" value="#{bundle.ListTiempoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tiempoController.prepareCreate}" value="#{bundle.ListTiempoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTiempoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

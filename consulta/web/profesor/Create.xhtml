@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProfesorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProfesorLabel_codigoprof}" for="codigoprof" />
+                    <h:inputText id="codigoprof" value="#{profesorController.selected.codigoprof}" title="#{bundle.CreateProfesorTitle_codigoprof}" />
+                    <h:outputLabel value="#{bundle.CreateProfesorLabel_tipocontrato}" for="tipocontrato" />
+                    <h:inputText id="tipocontrato" value="#{profesorController.selected.tipocontrato}" title="#{bundle.CreateProfesorTitle_tipocontrato}" />
+                    <h:outputLabel value="#{bundle.CreateProfesorLabel_titulo}" for="titulo" />
+                    <h:inputText id="titulo" value="#{profesorController.selected.titulo}" title="#{bundle.CreateProfesorTitle_titulo}" />
+                    <h:outputLabel value="#{bundle.CreateProfesorLabel_profesorid}" for="profesorid" />
+                    <h:inputText id="profesorid" value="#{profesorController.selected.profesorid}" title="#{bundle.CreateProfesorTitle_profesorid}" required="true" requiredMessage="#{bundle.CreateProfesorRequiredMessage_profesorid}"/>
+                    <h:outputLabel value="#{bundle.CreateProfesorLabel_visitante}" for="visitante" />
+                    <h:selectOneMenu id="visitante" value="#{profesorController.selected.visitante}" title="#{bundle.CreateProfesorTitle_visitante}" >
+                        <f:selectItems value="#{visitanteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProfesorLabel_departamento}" for="departamento" />
+                    <h:selectOneMenu id="departamento" value="#{profesorController.selected.departamento}" title="#{bundle.CreateProfesorTitle_departamento}" >
+                        <f:selectItems value="#{departamentoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProfesorLabel_persona}" for="persona" />
+                    <h:selectOneMenu id="persona" value="#{profesorController.selected.persona}" title="#{bundle.CreateProfesorTitle_persona}" required="true" requiredMessage="#{bundle.CreateProfesorRequiredMessage_persona}">
+                        <f:selectItems value="#{personaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{profesorController.create}" value="#{bundle.CreateProfesorSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{profesorController.prepareList}" value="#{bundle.CreateProfesorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProfesorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

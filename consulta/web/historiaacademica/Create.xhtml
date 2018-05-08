@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateHistoriaacademicaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateHistoriaacademicaLabel_curso}" for="curso" />
+                    <h:inputText id="curso" value="#{historiaacademicaController.selected.curso}" title="#{bundle.CreateHistoriaacademicaTitle_curso}" />
+                    <h:outputLabel value="#{bundle.CreateHistoriaacademicaLabel_nota}" for="nota" />
+                    <h:inputText id="nota" value="#{historiaacademicaController.selected.nota}" title="#{bundle.CreateHistoriaacademicaTitle_nota}" />
+                    <h:outputLabel value="#{bundle.CreateHistoriaacademicaLabel_secuencia}" for="secuencia" />
+                    <h:inputText id="secuencia" value="#{historiaacademicaController.selected.secuencia}" title="#{bundle.CreateHistoriaacademicaTitle_secuencia}" />
+                    <h:outputLabel value="#{bundle.CreateHistoriaacademicaLabel_semestre}" for="semestre" />
+                    <h:inputText id="semestre" value="#{historiaacademicaController.selected.semestre}" title="#{bundle.CreateHistoriaacademicaTitle_semestre}" />
+                    <h:outputLabel value="#{bundle.CreateHistoriaacademicaLabel_historiaacademicaid}" for="historiaacademicaid" />
+                    <h:inputText id="historiaacademicaid" value="#{historiaacademicaController.selected.historiaacademicaid}" title="#{bundle.CreateHistoriaacademicaTitle_historiaacademicaid}" required="true" requiredMessage="#{bundle.CreateHistoriaacademicaRequiredMessage_historiaacademicaid}"/>
+                    <h:outputLabel value="#{bundle.CreateHistoriaacademicaLabel_estudiante}" for="estudiante" />
+                    <h:selectOneMenu id="estudiante" value="#{historiaacademicaController.selected.estudiante}" title="#{bundle.CreateHistoriaacademicaTitle_estudiante}" >
+                        <f:selectItems value="#{estudianteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{historiaacademicaController.create}" value="#{bundle.CreateHistoriaacademicaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{historiaacademicaController.prepareList}" value="#{bundle.CreateHistoriaacademicaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateHistoriaacademicaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

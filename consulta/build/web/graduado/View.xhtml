@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewGraduadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewGraduadoLabel_fechagrado}"/>
+                    <h:outputText value="#{graduadoController.selected.fechagrado}" title="#{bundle.ViewGraduadoTitle_fechagrado}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewGraduadoLabel_graduadoid}"/>
+                    <h:outputText value="#{graduadoController.selected.graduadoid}" title="#{bundle.ViewGraduadoTitle_graduadoid}"/>
+                    <h:outputText value="#{bundle.ViewGraduadoLabel_estudiante}"/>
+                    <h:outputText value="#{graduadoController.selected.estudiante}" title="#{bundle.ViewGraduadoTitle_estudiante}"/>
+                    <h:outputText value="#{bundle.ViewGraduadoLabel_profesorconsejero}"/>
+                    <h:outputText value="#{graduadoController.selected.profesorconsejero}" title="#{bundle.ViewGraduadoTitle_profesorconsejero}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{graduadoController.destroyAndView}" value="#{bundle.ViewGraduadoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewGraduadoEditLink}"/>
+                <br />
+                <h:commandLink action="#{graduadoController.prepareCreate}" value="#{bundle.ViewGraduadoCreateLink}" />
+                <br />
+                <h:commandLink action="#{graduadoController.prepareList}" value="#{bundle.ViewGraduadoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewGraduadoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

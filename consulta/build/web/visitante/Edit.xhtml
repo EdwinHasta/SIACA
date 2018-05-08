@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditVisitanteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditVisitanteLabel_finnombramiento}" for="finnombramiento" />
+                    <h:inputText id="finnombramiento" value="#{visitanteController.selected.finnombramiento}" title="#{bundle.EditVisitanteTitle_finnombramiento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVisitanteLabel_inicionombramiento}" for="inicionombramiento" />
+                    <h:inputText id="inicionombramiento" value="#{visitanteController.selected.inicionombramiento}" title="#{bundle.EditVisitanteTitle_inicionombramiento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVisitanteLabel_visitanteid}" for="visitanteid" />
+                    <h:inputText id="visitanteid" value="#{visitanteController.selected.visitanteid}" title="#{bundle.EditVisitanteTitle_visitanteid}" required="true" requiredMessage="#{bundle.EditVisitanteRequiredMessage_visitanteid}"/>
+                    <h:outputLabel value="#{bundle.EditVisitanteLabel_profesor}" for="profesor" />
+                    <h:selectOneMenu id="profesor" value="#{visitanteController.selected.profesor}" title="#{bundle.EditVisitanteTitle_profesor}" required="true" requiredMessage="#{bundle.EditVisitanteRequiredMessage_profesor}">
+                        <f:selectItems value="#{profesorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{visitanteController.update}" value="#{bundle.EditVisitanteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditVisitanteViewLink}"/>
+                <br />
+                <h:commandLink action="#{visitanteController.prepareList}" value="#{bundle.EditVisitanteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditVisitanteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

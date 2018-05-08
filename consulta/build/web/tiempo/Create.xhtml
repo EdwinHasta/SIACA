@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTiempoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTiempoLabel_dia}" for="dia" />
+                    <h:inputText id="dia" value="#{tiempoController.selected.dia}" title="#{bundle.CreateTiempoTitle_dia}" />
+                    <h:outputLabel value="#{bundle.CreateTiempoLabel_hora}" for="hora" />
+                    <h:inputText id="hora" value="#{tiempoController.selected.hora}" title="#{bundle.CreateTiempoTitle_hora}" />
+                    <h:outputLabel value="#{bundle.CreateTiempoLabel_tiempoid}" for="tiempoid" />
+                    <h:inputText id="tiempoid" value="#{tiempoController.selected.tiempoid}" title="#{bundle.CreateTiempoTitle_tiempoid}" required="true" requiredMessage="#{bundle.CreateTiempoRequiredMessage_tiempoid}"/>
+                    <h:outputLabel value="#{bundle.CreateTiempoLabel_numero}" for="numero" />
+                    <h:selectOneMenu id="numero" value="#{tiempoController.selected.numero}" title="#{bundle.CreateTiempoTitle_numero}" >
+                        <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tiempoController.create}" value="#{bundle.CreateTiempoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tiempoController.prepareList}" value="#{bundle.CreateTiempoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTiempoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
